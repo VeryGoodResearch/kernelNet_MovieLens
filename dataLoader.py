@@ -22,7 +22,7 @@ def loadData(path='./', valfrac=0.1, delimiter='::', seed=1234,
 
     tic = time()
     print('reading data...')
-    data = np.loadtxt(path, skiprows=0, delimiter=delimiter).astype('int32')
+    data = np.genfromtxt(path, delimiter=delimiter, dtype='int32')
     print('data read in', time() - tic, 'seconds')
 
     n_u = np.unique(data[:, 0]).shape[0]  # number of users
@@ -61,6 +61,11 @@ def loadData(path='./', valfrac=0.1, delimiter='::', seed=1234,
         validRatings = validRatings.T
 
     print('loaded dense data matrix')
+    print(trainRatings)
 
     return trainRatings, validRatings
+
+"""
+Zwraca miacierz users x movies z oceną uzytkownika danego filmu albo 0 jesli nie ma oceny
+"""
 
